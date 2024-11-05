@@ -21,15 +21,15 @@
 #  endif
 #else
 
-#  include <immintrin.h>
-#  include <cstdint>
+/*#  include <immintrin.h>
+#  include <cstdint>*/
 #  include "dotproduct.h"
 
 namespace tesseract {
 
 // Computes and returns the dot product of the n-vectors u and v.
 // Uses Intel AVX intrinsics to access the SIMD instruction set.
-#if defined(FAST_FLOAT)
+/*#if defined(FAST_FLOAT)
 float DotProductAVX(const float *u, const float *v, int n) {
   const unsigned quot = n / 8;
   const unsigned rem = n % 8;
@@ -79,7 +79,11 @@ double DotProductAVX(const double *u, const double *v, int n) {
   }
   return result;
 }
-#endif
+#endif*/
+
+double DotProductAVX(const double *u, const double *v, int n) {
+  return DotProductNative(u, v, n);
+}
 
 } // namespace tesseract.
 

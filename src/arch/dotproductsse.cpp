@@ -21,16 +21,20 @@
 #  endif
 #else
 
-#  include <emmintrin.h>
+/*#  include <emmintrin.h>
 #  include <smmintrin.h>
-#  include <cstdint>
+#  include <cstdint>*/
 #  include "dotproduct.h"
 
 namespace tesseract {
 
+double DotProductSSE(const double *u, const double *v, int n) {
+  return DotProductNative(u, v, n);
+}
+
 // Computes and returns the dot product of the n-vectors u and v.
 // Uses Intel SSE intrinsics to access the SIMD instruction set.
-#if defined(FAST_FLOAT)
+/*#if defined(FAST_FLOAT)
 float DotProductSSE(const float *u, const float *v, int n) {
   int max_offset = n - 4;
   int offset = 0;
@@ -139,7 +143,7 @@ double DotProductSSE(const double *u, const double *v, int n) {
   }
   return result;
 }
-#endif
+#endif*/
 
 } // namespace tesseract.
 

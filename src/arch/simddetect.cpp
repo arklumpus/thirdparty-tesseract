@@ -180,7 +180,7 @@ SIMDDetect::SIMDDetect() {
 #    endif
   }
 #  elif defined(_WIN32)
-  int cpuInfo[4];
+/*  int cpuInfo[4];
   int max_function_id;
   __cpuid(cpuInfo, 0);
   max_function_id = cpuInfo[0];
@@ -209,7 +209,7 @@ SIMDDetect::SIMDDetect() {
 #      endif
     }
 #    endif
-  }
+  }*/
 #  else
 #    error "I don't know how to test for SIMD with this compiler"
 #  endif
@@ -232,7 +232,7 @@ SIMDDetect::SIMDDetect() {
 #endif
 
   // Select code for calculation of dot product based on autodetection.
-  if (false) {
+/*  if (false) {
     // This is a dummy to support conditional compilation.
 #if defined(HAVE_AVX512F)
   } else if (avx512F_available_) {
@@ -259,7 +259,7 @@ SIMDDetect::SIMDDetect() {
     // NEON detected.
     SetDotProduct(DotProductNEON, &IntSimdMatrix::intSimdMatrixNEON);
 #endif
-  }
+  }*/
 
   const char *dotproduct_env = getenv("DOTPRODUCT");
   if (dotproduct_env != nullptr) {
@@ -283,7 +283,7 @@ void SIMDDetect::Update() {
     // Native optimized code selected by config variable.
     SetDotProduct(DotProductNative, IntSimdMatrix::intSimdMatrix);
     dotproduct_method = "native";
-#if defined(HAVE_AVX2)
+/*#if defined(HAVE_AVX2)
   } else if (dotproduct == "avx2") {
     // AVX2 selected by config variable.
     SetDotProduct(DotProductAVX, &IntSimdMatrix::intSimdMatrixAVX2);
@@ -316,7 +316,7 @@ void SIMDDetect::Update() {
     // NEON selected by config variable.
     SetDotProduct(DotProductNEON, &IntSimdMatrix::intSimdMatrixNEON);
     dotproduct_method = "neon";
-#endif
+#endif*/
   } else if (dotproduct == "std::inner_product") {
     // std::inner_product selected by config variable.
     SetDotProduct(DotProductStdInnerProduct, IntSimdMatrix::intSimdMatrix);

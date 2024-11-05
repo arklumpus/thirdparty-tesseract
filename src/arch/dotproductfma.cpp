@@ -21,15 +21,15 @@
 #  endif
 #else
 
-#  include <immintrin.h>
-#  include <cstdint>
+/*#  include <immintrin.h>
+#  include <cstdint>*/
 #  include "dotproduct.h"
 
 namespace tesseract {
 
 // Computes and returns the dot product of the n-vectors u and v.
 // Uses Intel FMA intrinsics to access the SIMD instruction set.
-#if defined(FAST_FLOAT)
+/*#if defined(FAST_FLOAT)
 float DotProductFMA(const float *u, const float *v, int n) {
   const unsigned quot = n / 16;
   const unsigned rem = n % 16;
@@ -83,7 +83,11 @@ double DotProductFMA(const double *u, const double *v, int n) {
   }
   return result;
 }
-#endif
+#endif*/
+
+double DotProductFMA(const double *u, const double *v, int n) {
+  return DotProductNative(u, v, n);
+}
 
 } // namespace tesseract.
 
